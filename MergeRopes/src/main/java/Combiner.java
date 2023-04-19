@@ -18,6 +18,27 @@ public class Combiner {
         Charlie.setRight(new Rope("eating","Charlie"));
         Rope Charlie_v2 = mergeRope(Charlie, Bob, original);
         Rope Charlie_v3 = mergeRope(Charlie_v2, Alice_v2, Bob);
+
+        Rope test1 = new Rope("","");
+        test1.setLeft(new Rope("",""));
+
+        Rope testLeft = new Rope("","");
+        testLeft.setLeft(new Rope("I","test1"));
+        testLeft.setRight(new Rope("am","test1"));
+        test1.getLeft().setLeft(testLeft);
+        test1.getLeft().setRight(new Rope("hungry","test1"));
+        test1.setRight(new Rope("eating",""));
+
+        Rope test2 = new Rope("","");
+
+        Rope test2Left = new Rope("","");
+        test2Left.setLeft(new Rope("I","test1"));
+        test2Left.setRight(new Rope("am","test1"));
+        test2.setLeft(test2Left);
+        Rope test2right = new Rope("","");
+        test2right.setLeft(new Rope("hungry","test2"));
+        test2right.setRight(new Rope("eating","test2"));
+        test2.setRight(test2right);
     }
 
 

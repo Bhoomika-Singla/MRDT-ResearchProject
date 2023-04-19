@@ -20,10 +20,12 @@ public class Rope {
         this.data = data;
         this.left = left;
         this.right = right;
-        String hashedString = data;
+        String hashedString = "";
         if(left != null)    hashedString = hashedString + left.hashVal;
+        if(data.length() != 0)  hashedString += Helper.hashString(data);
         if(right != null)   hashedString = hashedString + right.hashVal;
-        this.hashVal = Helper.hashString(hashedString);
+//        this.hashVal = Helper.hashString(hashedString);
+        this.hashVal = hashedString;
         this.setLength();
         this.setUserDesc(userDesc);
     }
@@ -60,11 +62,12 @@ public class Rope {
 
     public void setData(String data) {
         this.data = data;
-        String hashedString = data;
+        String hashedString = "";
         if(left != null)    hashedString = hashedString + left.hashVal;
+        if(data.length() != 0)  hashedString += Helper.hashString(data);
         if(right != null)   hashedString = hashedString + right.hashVal;
-        this.hashVal = Helper.hashString(hashedString);
-        //this.hashVal = Helper.hashString(data);
+//        this.hashVal = Helper.hashString(hashedString);
+        this.hashVal = hashedString;
         this.setLength();
     }
 
@@ -75,11 +78,12 @@ public class Rope {
     public void setLeft(Rope left) {
         this.left = left;
         this.setLength();
-        String hashedString = data;
+        String hashedString = "";
         if(left != null)    hashedString = hashedString + left.hashVal;
+        if(data.length() != 0)  hashedString += Helper.hashString(data);
         if(right != null)   hashedString = hashedString + right.hashVal;
-        this.hashVal = Helper.hashString(hashedString);
-        //this.hashVal = Helper.hashString(this.data+left.hashVal);
+//        this.hashVal = Helper.hashString(hashedString);
+        this.hashVal = hashedString;
     }
 
     public Rope getRight() {
@@ -88,11 +92,12 @@ public class Rope {
 
     public void setRight(Rope right) {
         this.right = right;
-        String hashedString = data;
+        String hashedString = "";
         if(left != null)    hashedString = hashedString + left.hashVal;
+        if(data.length() != 0)  hashedString += Helper.hashString(data);
         if(right != null)   hashedString = hashedString + right.hashVal;
-        this.hashVal = Helper.hashString(hashedString);
-        //this.hashVal = Helper.hashString(this.data+right.hashVal);
+//        this.hashVal = Helper.hashString(hashedString);
+        this.hashVal = hashedString;
     }
 
     @Override
