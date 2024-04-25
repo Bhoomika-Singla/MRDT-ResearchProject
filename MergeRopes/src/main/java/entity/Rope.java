@@ -12,6 +12,10 @@ public class Rope {
     Rope right;
     String hashVal;
 
+    String contentHash;
+
+    String identifier;
+
     public Rope(String data, String userDesc){
         this(data, null, null, userDesc);
     }
@@ -113,6 +117,34 @@ public class Rope {
         return Objects.hash(hashVal);
     }
 
+    public Rope split(int start, int end){
 
+        if(this.length == end){
+            return (this.left == null) ? cloneRope(this) : cloneRope(this.left);
+        }
 
+        if(this.length>end){
+            Rope left = this.left;
+            Rope right = this.right.split(start, end-length);
+            Rope newRope = new Rope("","");
+            newRope.setLeft(left);
+            newRope.setRight(right);
+            return newRope;
+        } else{
+            return this.left.split(start, end);
+        }
+    }
+
+    //TODO : Will return rope starting from this index to end index
+    public Rope split(int start){
+        return null;
+    }
+
+    public static Rope cloneRope(Rope rope){
+        if(rope == null)    return null;
+        Rope clonedRope = new Rope(rope.getData(),rope.getUserDesc());
+        clonedRope.setLeft(cloneRope(rope.getLeft()));
+        clonedRope.setRight(cloneRope(rope.getRight()));
+        return clonedRope;
+    }
 }

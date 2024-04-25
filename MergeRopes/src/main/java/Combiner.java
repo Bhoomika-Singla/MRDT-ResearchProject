@@ -19,15 +19,21 @@ public class Combiner {
         Rope Charlie_v2 = mergeRope(Charlie, Bob, original);
         Rope Charlie_v3 = mergeRope(Charlie_v2, Alice_v2, Bob);
 
-        Rope test1 = new Rope("","");
-        test1.setLeft(new Rope("",""));
+//        Rope test1 = new Rope("","");
+//        test1.setLeft(new Rope("",""));
+//
+//        Rope testLeft = new Rope("","");
+//        testLeft.setLeft(new Rope("I","test1"));
+//        testLeft.setRight(new Rope("am","test1"));
+//        test1.getLeft().setLeft(testLeft);
+//        test1.getLeft().setRight(new Rope("hungry","test1"));
+//        test1.setRight(new Rope("eating",""));
 
-        Rope testLeft = new Rope("","");
-        testLeft.setLeft(new Rope("I","test1"));
-        testLeft.setRight(new Rope("am","test1"));
-        test1.getLeft().setLeft(testLeft);
-        test1.getLeft().setRight(new Rope("hungry","test1"));
-        test1.setRight(new Rope("eating",""));
+        Alice_v2.setRight(new Rope("eating","Alice"));
+        Rope Alice_left = Alice_v2.getLeft();
+        Alice_v2.setLeft(new Rope("",""));
+        Alice_v2.getLeft().setLeft(Alice_left);
+        Alice_v2.getLeft().setRight(new Rope("hungry","Alice"));
 
         Rope test2 = new Rope("","");
 
@@ -36,19 +42,21 @@ public class Combiner {
         test2Left.setRight(new Rope("am","test1"));
         test2.setLeft(test2Left);
         Rope test2right = new Rope("","");
-        test2right.setLeft(new Rope("hungry","test2"));
+        test2right.setLeft(new Rope("full","test2"));
         test2right.setRight(new Rope("eating","test2"));
         test2.setRight(test2right);
+        Rope mergedRope = merge(Alice_v2, test2);
     }
 
-
+//    public static Rope mergeRope(){
+//
+//    }
     public static Rope mergeRope(Rope user1, Rope user2, Rope original){
         if(user1.getHashVal().equals(user2.getHashVal())) return user1;
         if(original.getHashVal().equals(user1.getHashVal())) return cloneRope(user2);
         if(original.getHashVal().equals(user2.getHashVal()))  return user1;
         return merge(cloneRope(user1), user2);
     }
-
     public static Rope cloneRope(Rope rope){
         if(rope == null)    return null;
         Rope clonedRope = new Rope(rope.getData(),rope.getUserDesc());
@@ -56,7 +64,6 @@ public class Combiner {
         clonedRope.setRight(cloneRope(rope.getRight()));
         return clonedRope;
     }
-
     public static Rope merge(Rope user1, Rope user2){
         if(user1 == null && user2 == null)  return user1;
         if(user1 == null){
@@ -79,6 +86,9 @@ public class Combiner {
 
     public static void segregate(Rope user){
         if(user == null)    return;
+        /**
+        *
+        **/
         segregate(user.getLeft());
         String[] data = user.getData().split(" ");
         String[] userDesc = user.getUserDesc().split(" ");
